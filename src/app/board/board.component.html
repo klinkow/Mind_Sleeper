@@ -1,5 +1,7 @@
-<div *ngFor="let cell of board.cells">
-  <div class="cell" [id]="cell.x + cell.y">
-
-  </div>
+<div id="board">
+    <div *ngFor="let cell of board.cells" (click)="revealSquare(cell)" >
+      <div class="cell" [id]="cell.x + '' + cell.y" [style.background-color]="determineColor(cell)">
+        <h2 *ngIf="cell.isRevealed && cell.contiguousBombs">{{cell.contiguousBombs}}</h2>
+      </div>
+    </div>
 </div>

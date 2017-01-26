@@ -1,7 +1,9 @@
 export class Cell {
   public contiguousBombs: number;
-  public isBomb: boolean;
-  public isFlagged: boolean;
+  public isBomb: boolean = false;
+  public isFlagged: boolean = false;
+  public isRevealed: boolean = false;
+
   constructor(public x: number, public y: number){
   }
 }
