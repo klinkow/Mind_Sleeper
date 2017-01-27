@@ -18,11 +18,15 @@
 }
 
 #board {
-
   margin: 50px;
 }
 
 img {
   width: 105%;
   height: auto;
+}
+
+#info {
+  display: flex;
+  justify-content: space-around;
 }

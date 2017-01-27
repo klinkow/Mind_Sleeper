@@ -15,7 +15,6 @@ export class BoardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.board, this.boardWidth)
   }
 
   handleClick(cell, event) {
