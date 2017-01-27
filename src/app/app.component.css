@@ -1,0 +1,9 @@
+body {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav .nav-wrapper {
+  font-family: 'Orbitron', sans-serif;
+
+}

@@ -1,7 +1,12 @@
-<div id="board">
-    <div *ngFor="let cell of board.cells" (click)="revealSquare(cell)" >
-      <div class="cell" [id]="cell.x + '' + cell.y" [style.background-color]="determineColor(cell)">
-        <h2 *ngIf="cell.isRevealed && cell.contiguousBombs">{{cell.contiguousBombs}}</h2>
+<div id="info" class >
+
+</div>
+<div id="board" [style.width.px]="boardWidth">
+    <div *ngFor="let cell of board.cells">
+      <div (mouseup)="handleClick(cell, $event)" class="cell" [id]="cell.x + '' + cell.y" [style.background-color]="determineColor(cell)">
+        <h4 *ngIf="cell.isRevealed && cell.contiguousBombs">{{cell.contiguousBombs}}</h4>
+        <img src=".././assets/img/bomb.png" *ngIf="cell.isBomb && cell.isRevealed">
+        <img src=".././assets/img/flagicon.png" *ngIf="cell.isFlagged && !cell.isRevealed">
       </div>
     </div>
 </div>

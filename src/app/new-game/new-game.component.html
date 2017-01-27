@@ -1,0 +1,16 @@
+<h3>New Game</h3>
+<div class="row">
+  <form class="col s12" (submit)="startGame(name.value, difficulty.value)">
+    <div class="row">
+      <div class="input-field col s12">
+        <input #name id="name" type="text" class="validate">
+        <label for="name" data-error="wrong" data-success="right">Name</label>
+      </div>
+    </div>
+    <p class="range-field">
+      <label>Difficulty</label>
+      <input #difficulty type="range" id="test5" min="1" max="4" />
+    </p>
+    <button class="btn waves-effect waves-light" type="submit">Submit</button>
+  </form>
+</div>

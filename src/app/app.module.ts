@@ -6,12 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { CellComponent } from './cell/cell.component';
+import { NewGameComponent } from './new-game/new-game.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    CellComponent
+    CellComponent,
+    NewGameComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -2,11 +2,27 @@
   height: 50px;
   width: 50px;
   background-color: grey;
-  border: 2px solid black;
+  border: 1px solid black;
   float: left;
-  border-radius: 10px;
+  color: white;
+  font-size: 10px;
+  font-family: 'Orbitron', sans-serif;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+
+.cell h4 {
+  position: absolute;
+  bottom: -30%;
 }
 
 #board {
-  width: 500px;
+
+  margin: 50px;
+}
+
+img {
+  width: 105%;
+  height: auto;
 }
