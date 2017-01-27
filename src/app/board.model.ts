@@ -1,7 +1,9 @@
 import { Cell } from './cell.model';
 
 export class Board {
-  constructor(public size: string, public player: string, public cells: Cell[]) {}
+  public bombCount: number;
+  public cells: Cell[]=[];
+  constructor(public size: string, public player: string) {}
 
   populateBoard() {
     var boardX: number;
@@ -11,19 +13,19 @@ export class Board {
     if (this.size === "1") {
       boardX = 9;
       boardY = 9;
-      bombCount = 10;
+      this.bombCount = 10;
     } else if (this.size === "2") {
       boardX = 16;
       boardY = 16;
-      bombCount = 40;
+      this.bombCount = 40;
     } else if (this.size === "3") {
       boardX = 16;
       boardY = 30;
-      bombCount = 99;
+      this.bombCount = 99;
     } else {
       boardX = 16;
       boardY = 30;
-      bombCount = 200;
+      this.bombCount = 200;
     }
 
 
@@ -34,7 +36,7 @@ export class Board {
       };
     };
 
-    for (var b=0; b<bombCount; b++) {
+    for (var b=0; b<this.bombCount; b++) {
       var randomCell: Cell = this.cells[Math.floor(Math.random()*boardX*boardY)];
       if (randomCell.isBomb === false) {
         randomCell.isBomb = true;

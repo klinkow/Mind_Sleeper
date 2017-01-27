@@ -51,7 +51,7 @@ export class BoardComponent implements OnInit {
       if (cell.isBomb && cell.isFlagged) {
         flaggedBombs ++; };
       });
-    if (flaggedBombs === 10 && flagCounter === 10) {
+    if (flaggedBombs === this.board.bombCount && flagCounter === this.board.bombCount ) {
       alert("you win!");
       this.gameOver();
     };

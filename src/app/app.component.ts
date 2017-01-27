@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   @Output() boardWidth: number;
 
   ngOnInit() {
-    this.board = new Board ("1", "Devin", []);
+    this.board = new Board ("1", "Devin");
     this.boardWidth = this.board.populateBoard()*50;
     console.log(this.board, this.boardWidth)
   }

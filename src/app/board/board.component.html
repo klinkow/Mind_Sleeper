@@ -1,7 +1,7 @@
-<div id="info" class >
-
-</div>
 <div id="board" [style.width.px]="boardWidth">
+  <div id="info" class >
+    <h2>{{board.player}}</h2>
+  </div>
     <div *ngFor="let cell of board.cells">
       <div (mouseup)="handleClick(cell, $event)" class="cell" [id]="cell.x + '' + cell.y" [style.background-color]="determineColor(cell)">
         <h4 *ngIf="cell.isRevealed && cell.contiguousBombs">{{cell.contiguousBombs}}</h4>
