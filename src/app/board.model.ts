@@ -8,7 +8,6 @@ export class Board {
   populateBoard() {
     var boardX: number;
     var boardY: number;
-    var bombCount: number;
 
     if (this.size === "1") {
       boardX = 9;

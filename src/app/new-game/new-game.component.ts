@@ -11,7 +11,7 @@ export class NewGameComponent {
   @Output() newGameSender = new EventEmitter();
 
   startGame(name: string, difficulty: string) {
-    var newBoard: Board = new Board(difficulty, name, [])
+    var newBoard: Board = new Board(difficulty, name)
     this.newGameSender.emit(newBoard);
   }
 }
