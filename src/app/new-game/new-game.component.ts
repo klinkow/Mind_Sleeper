@@ -7,6 +7,7 @@ import { Cell } from '.././cell.model';
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.css']
 })
+
 export class NewGameComponent {
   @Output() newGameSender = new EventEmitter();
 

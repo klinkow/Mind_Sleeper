@@ -1,8 +1,14 @@
 import { Cell } from './cell.model';
 
 export class Board {
-  public bombCount: number;
   public cells: Cell[]=[];
+  public bombCount: number;
+  public remainingFlags: number;
+  public clickCount: number = 0;
+  public seconds: number = 0;
+  public timer = setInterval(() => {this.seconds ++;}, 1000);
+  public youWon: boolean = false;
+  public youLost: boolean = false;
   constructor(public size: string, public player: string) {}
 
   populateBoard() {
@@ -27,6 +33,7 @@ export class Board {
       this.bombCount = 200;
     }
 
+    this.remainingFlags = this.bombCount;
 
     for (var i=0; i<boardY; i ++) {
       for(var j=0; j<boardX; j ++) {
@@ -44,22 +51,14 @@ export class Board {
       }
     }
 
-    this.cells.forEach((cell)=>{
+    this.cells.forEach((cell) => {
       var contiguousCells: Cell[];
       if (cell.isBomb === false) {
-        var bombCounter: number = 0;
-        contiguousCells = this.cells.filter(function(testCell) {
-          return (testCell.x >= cell.x - 1 && testCell.x <= cell.x + 1 && testCell.y >= cell.y - 1 && testCell.y <= cell.y + 1);
-        });
-        contiguousCells.forEach((contiguousCell) => {
-          if (contiguousCell.isBomb === true) {
-            bombCounter ++;
-          }
-        });
-        cell.contiguousBombs = bombCounter;
+        cell.contiguousBombs = this.cells.filter((testCell) => {
+          return (testCell.x >= cell.x - 1 && testCell.x <= cell.x + 1 && testCell.y >= cell.y - 1 && testCell.y <= cell.y + 1 && testCell.isBomb);
+        }).length;
       }
     });
-
     return boardX;
   }
 }

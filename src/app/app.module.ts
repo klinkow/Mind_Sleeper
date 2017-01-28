@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
-import { CellComponent } from './cell/cell.component';
 import { NewGameComponent } from './new-game/new-game.component';
 import { AboutComponent } from './about/about.component';
 
@@ -13,7 +12,6 @@ import { AboutComponent } from './about/about.component';
   declarations: [
     AppComponent,
     BoardComponent,
-    CellComponent,
     NewGameComponent,
     AboutComponent
   ],

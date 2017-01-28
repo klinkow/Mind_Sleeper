@@ -5,5 +5,12 @@ body {
 
 nav .nav-wrapper {
   font-family: 'Orbitron', sans-serif;
+}
 
+new-game {
+  position: fixed;
+  right: 5%;
+  z-index: 2;
+  background-color: white;
+  padding: 20px;
 }

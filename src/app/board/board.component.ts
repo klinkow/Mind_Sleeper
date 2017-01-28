@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Board } from '.././board.model';
 import { Cell } from '.././cell.model';
 
@@ -8,32 +8,34 @@ import { Cell } from '.././cell.model';
   styleUrls: ['./board.component.css']
 })
 
-export class BoardComponent implements OnInit {
+export class BoardComponent {
   @Input() board: Board;
   @Input() boardWidth: number;
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
   handleClick(cell, event) {
     switch(event.which) {
       case 1:
-        this.revealSquare(cell);
+        this.reveal(cell);
+        this.board.clickCount ++;
         break;
       case 3:
-        if (cell.isFlagged === false) {
-          cell.isFlagged = true;
-          this.winCheck();
+        if (cell.isFlagged === false && this.board.remainingFlags > 0) {
+            cell.isFlagged = true;
+            this.board.remainingFlags --;
+            this.winCheck();
         } else if (cell.isFlagged === true) {
-          cell.isFlagged = false;
+            cell.isFlagged = false;
+            this.board.remainingFlags ++;
         }
-      break;
+        this.board.clickCount ++;
+        break;
     }
   }
 
   gameOver() {
+    clearInterval(this.board.timer);
     this.board.cells.forEach((cell) => {
       if (cell.isBomb) {
         cell.isRevealed = true;
@@ -41,43 +43,39 @@ export class BoardComponent implements OnInit {
     })
   }
 
-  winCheck () {
-    var flagCounter : number = 0;
+  winCheck() {
     var flaggedBombs : number = 0;
     this.board.cells.forEach((cell) => {
-      if (cell.isFlagged) {
-        flagCounter ++; };
       if (cell.isBomb && cell.isFlagged) {
         flaggedBombs ++; };
       });
-    if (flaggedBombs === this.board.bombCount && flagCounter === this.board.bombCount ) {
-      alert("you win!");
+    if (flaggedBombs === this.board.bombCount) {
       this.gameOver();
+      this.board.youWon = true;
     };
   }
 
 
-  revealSquare(clickedCell) {
+  reveal(clickedCell) {
     if (clickedCell.isBomb) {
-      clickedCell.isRevealed = true;
       this.gameOver();
+      this.board.youLost = true;
     } else if (clickedCell.contiguousBombs > 0) {
       clickedCell.isRevealed = true;
     } else {
       clickedCell.isRevealed = true;
-      var contiguousCells: Cell[];
-      contiguousCells = this.board.cells.filter(function(testCell) {
+      var contiguousCells: Cell[] = this.board.cells.filter((testCell) => {
         return (testCell.x >= clickedCell.x - 1 && testCell.x <= clickedCell.x + 1 && testCell.y >= clickedCell.y - 1 && testCell.y <= clickedCell.y + 1);
       });
-      this.revealContiguousCells(contiguousCells);
+      this.revealAll(contiguousCells);
     }
   }
 
-  revealContiguousCells(contiguousCells) {
+  revealAll(contiguousCells) {
     if (contiguousCells != undefined) {
       contiguousCells.forEach((contiguousCell) => {
         if (contiguousCell.isRevealed === false) {
-          this.revealSquare(contiguousCell);
+          this.reveal(contiguousCell);
         }
       });
     }

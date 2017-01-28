@@ -1,6 +1,21 @@
-<div id="board" [style.width.px]="boardWidth">
+<div id="banner">
+  <h1 *ngIf="board.youWon">YOU WON!</h1>
+  <h1 *ngIf="board.youLost">YOU LOST!</h1>
+</div>
+<div id="board" [style.width.px]="boardWidth" (change)="newGame()">
   <div id="info">
-    <h2>{{board.player}}</h2>
+    <div class="left">
+      <h2>{{board.clickCount}}</h2>
+      <small>Clicks</small>
+    </div>
+    <div class="center">
+      <h2>{{board.seconds}}</h2>
+      <small>{{board.player}}</small>
+    </div>
+    <div class="right">
+      <h2>{{board.remainingFlags}}</h2>
+      <small class="right">Flags</small>
+    </div>
   </div>
     <div *ngFor="let cell of board.cells">
       <div (mouseup)="handleClick(cell, $event)" class="cell" [id]="cell.x + '' + cell.y" [style.background-color]="determineColor(cell)">
