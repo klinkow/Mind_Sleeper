@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Board } from './board.model';
 import { Cell } from './cell.model';
 
@@ -10,12 +10,11 @@ import { Cell } from './cell.model';
 
 export class AppComponent implements OnInit {
   showNewGameForm : boolean = false;
-  @Output() board: Board;
-  @Output() boardWidth: number;
+  board: Board;
 
   ngOnInit() {
     this.board = new Board ("1", "");
-    this.boardWidth = this.board.populateBoard()*50;
+    this.board.populateBoard();
   }
 
   toggleGameForm() {
@@ -24,7 +23,7 @@ export class AppComponent implements OnInit {
 
   newGame(board) {
     this.board = board;
-    this.boardWidth = this.board.populateBoard()*50;
+    this.board.populateBoard();
     this.toggleGameForm();
   }
 }

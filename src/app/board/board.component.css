@@ -18,7 +18,6 @@
 }
 
 #board {
-  margin: 50px;
 }
 
 img {
@@ -54,6 +53,5 @@ h2 {
   text-align: center;
   font-weight: 600;
   font-size: 120px;
-  background-color: rgba(255, 0, 0, 0);
   color: rgba(0, 0, 0, 0.7);
 }

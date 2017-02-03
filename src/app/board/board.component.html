@@ -2,7 +2,7 @@
   <h1 *ngIf="board.youWon">YOU WON!</h1>
   <h1 *ngIf="board.youLost">YOU LOST!</h1>
 </div>
-<div id="board" [style.width.px]="boardWidth" (change)="newGame()">
+<div id="board" [style.width.px]="board.width" (change)="newGame()">
   <div id="info">
     <div class="left">
       <h2>{{board.clickCount}}</h2>

@@ -10,27 +10,30 @@ import { Cell } from '.././cell.model';
 
 export class BoardComponent {
   @Input() board: Board;
-  @Input() boardWidth: number;
 
-  constructor() { }
+  constructor() {
+    console.log(this.board)
+  }
 
   handleClick(cell, event) {
-    switch(event.which) {
-      case 1:
-        this.reveal(cell);
-        this.board.clickCount ++;
-        break;
-      case 3:
-        if (cell.isFlagged === false && this.board.remainingFlags > 0) {
-            cell.isFlagged = true;
-            this.board.remainingFlags --;
-            this.winCheck();
-        } else if (cell.isFlagged === true) {
-            cell.isFlagged = false;
-            this.board.remainingFlags ++;
-        }
-        this.board.clickCount ++;
-        break;
+    if (this.board.youWon === false && this.board.youLost === false) {
+      switch(event.which) {
+        case 1:
+          this.reveal(cell);
+          this.board.clickCount ++;
+          break;
+        case 3:
+          if (cell.isFlagged === false && this.board.remainingFlags > 0) {
+              cell.isFlagged = true;
+              this.board.remainingFlags --;
+              this.winCheck();
+          } else if (cell.isFlagged === true) {
+              cell.isFlagged = false;
+              this.board.remainingFlags ++;
+          }
+          this.board.clickCount ++;
+          break;
+      }
     }
   }
 
@@ -72,13 +75,11 @@ export class BoardComponent {
   }
 
   revealAll(contiguousCells) {
-    if (contiguousCells != undefined) {
-      contiguousCells.forEach((contiguousCell) => {
-        if (contiguousCell.isRevealed === false) {
-          this.reveal(contiguousCell);
-        }
-      });
-    }
+    contiguousCells.forEach((contiguousCell) => {
+      if (contiguousCell.isRevealed === false) {
+        this.reveal(contiguousCell);
+      }
+    });
   }
 
   determineColor(cell) {
