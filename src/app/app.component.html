@@ -9,6 +9,11 @@
   </div>
 </nav>
 
+<div id="banner">
+  <h1 *ngIf="board.youWon">YOU WON!</h1>
+  <h1 *ngIf="board.youLost">YOU LOST!</h1>
+</div>
+
 <body class="container">
   <new-game *ngIf="showNewGameForm" (newGameSender)="newGame($event)"></new-game>
   <board oncontextmenu="return false;" [board]="board"></board>

@@ -14,3 +14,19 @@ new-game {
   background-color: white;
   padding: 20px;
 }
+
+#banner {
+  position: fixed;
+  top: 30%;
+  margin: 5% auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#banner h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 200px;
+  color: rgba(0, 0, 0, 0.7);
+}
